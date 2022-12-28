@@ -20,11 +20,11 @@ df.head()
 
 countries = df['Area'].unique()
 
-plot1 = plt.figure(1)
+plot1 = plt.figure(4)
 for i in countries:
     plt.plot(df[df['Area'] == i]['Year'], df[df['Area'] == i]['Value'])
 plt.title('Agricultural Expenditure in EU Countries')
-plt.legend(countries, shadow=True, loc=(1.04,0))
+plt.legend(countries, shadow=True)
 plt.xticks(np.arange(2000, 2022, 2))
 
 
@@ -35,7 +35,7 @@ gdpDF = gdpDF[gdpDF['Area'].isin(['Ireland','Netherlands','France','Italy','Spai
 gdpDF = gdpDF[gdpDF["Year"].isin([2020]) == False]
 gdpDF.head()
 
-plot2 = plt.figure(2)
+plot2 = plt.figure(5)
 for i in countries:
     spend = list(df[df['Area'] == i]['Value'])
     gdp = list(gdpDF[gdpDF['Area'] == i]['Value'])
@@ -43,7 +43,7 @@ for i in countries:
     plt.plot(gdpDF[gdpDF['Area'] == i]['Year'], normalised)
 
 plt.title('Agricultural Expenditure - Perc. of GDP')
-plt.legend(countries, shadow=True, loc=(1,0))
+plt.legend(countries, shadow=True)
 plt.xticks(np.arange(2000, 2022, 2))
 
 plt.show()
