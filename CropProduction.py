@@ -16,15 +16,16 @@ import seaborn as sns
 
 df = pd.read_csv('cropProduction.csv')
 
-# countries = ['Ireland','Netherlands','France','Italy','Spain','Poland','Portugal','Germany','Lithuania','Latvia','Sweden','Finland','Norway']
-countries = ['Austria', 'Belgium', 'Bulgaria', 'Cyprus', 'Czech Republic', 'Germany', 'Denmark', 'Spain', 'Estonia', 'Finland', 'France', 'United Kingdom', 'Greece', 'Croatia', 'Hungary', 'Ireland', 'Italy', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Sweden']
+countries = ['Ireland','Netherlands','France','Italy','Spain','Poland','Portugal','Germany','Lithuania','Latvia','Sweden','Finland','Norway']
+# countries = ['Austria', 'Belgium', 'Bulgaria', 'Cyprus', 'Czech Republic', 'Germany', 'Denmark', 'Spain', 'Estonia', 'Finland', 'France', 'United Kingdom', 'Greece', 'Croatia', 'Hungary', 'Ireland', 'Italy', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Sweden']
+# countries = ['Ireland']
 
 
 # df = df[df['Area'].isin(['Ireland','Netherlands','France','Italy','Spain','Poland','Portugal','Germany'])]
 
 
-crop = 'Blueberries'
-# List of options
+crop = 'Barley'
+
 
 
 
@@ -33,9 +34,10 @@ yieldd = df[(df['Element'] == 'Yield') & (df['Item'] == crop)]
 prod = df[(df['Element'] == 'Production') & (df['Item'] == crop)]
 df.head()
 
+
 fig = plt.figure(1,figsize=(10,3))
 [sns.lineplot(x=yieldd[yieldd['Area'] == i]['Year'], y=yieldd[yieldd['Area'] == i]['Value'], label=i) for i in countries]
-plt.title('Yield')
+plt.title(crop+' Yield')
 
 # fig2 = plt.figure(2,figsize=(10,3))
 # [sns.lineplot(x=prod[prod['Area'] == i]['Year'], y=prod[prod['Area'] == i]['Value'], label=i) for i in countries]
