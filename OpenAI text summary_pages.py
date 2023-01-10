@@ -53,7 +53,7 @@ with open('../CA2/Annual Review and Outlook for Agriculture, Food and the Marine
     
 
 summaryAll = []
-for chunkNum in pages[10:29]:
+for chunkNum in pages[113:121]:
 
     # Use the TLDR model to summarize the text
     model_engine = "text-davinci-002"

@@ -6,12 +6,13 @@ import PyPDF2
 import statistics
 import pandas as pd
 
-def get_sentiment_scores(pdf_path):
+def get_sentiment_scores(pdf_path, startPage, stopPage):
   # Open the PDF file and extract the text
   with open(pdf_path, 'rb') as f:
     pdf_reader = PyPDF2.PdfReader(f)
     text = ""
-    for page in range(len(pdf_reader.pages)):
+    #for page in range(len(pdf_reader.pages)):
+    for page in range(startPage,stopPage):
       text += pdf_reader.pages[page].extract_text()
   
   # Split the text into sentences
@@ -46,7 +47,7 @@ def get_sentiment_scores(pdf_path):
 
   return statistics.mean(scores),scoresDF
 
-meanScores, df = get_sentiment_scores('../CA2/Annual Review and Outlook for Agriculture, Food and the Marine 2022.pdf')
+meanScores, df = get_sentiment_scores('../CA2/Annual Review and Outlook for Agriculture, Food and the Marine 2022.pdf',113,121)
 
 #%%
 
@@ -55,6 +56,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 import statistics
+fig = plt.figure(1)
 ax = sns.histplot(dfdrop['Scores'], kde=True, stat='probability');
 ax.set_title('Sentiment')
 ax.grid(True, ls='-.', alpha=0.75)
@@ -64,8 +66,8 @@ df['Sentiment'] = ['Positive' if x > 0.05 else 'Negative' if x < -0.05 else 'Neu
 df['Sentiment'] = pd.Categorical(df['Sentiment'], ['Negative','Neutral','Positive'])
 
 # plt.hist(df['Sentiment'])
-
-ax = sns.histplot(df['Sentiment'], stat='probability');
+fig = plt.figure(2)
+ax = sns.histplot(df['Sentiment'], stat='count');
 ax.set_title('Sentiment')
 ax.grid(True, ls='-.', alpha=0.75)
 
